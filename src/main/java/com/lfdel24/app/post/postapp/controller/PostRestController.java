@@ -1,9 +1,12 @@
 package com.lfdel24.app.post.postapp.controller;
 
+import com.lfdel24.app.post.postapp.entity.Post;
+import com.lfdel24.app.post.postapp.service.PostRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
  * @author leo
  */
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/posts")
 public class PostRestController {
 
     @Autowired
-    private PostRepository repository
+    private PostRepository repository;
 
-    @GetMapping() ;
-
-    public List<Object> list() {
-        return repository.;
+    @GetMapping()
+    public List<Post> list() {
+        return repository.findAll();
     }
 
     @GetMapping("/{id}")
